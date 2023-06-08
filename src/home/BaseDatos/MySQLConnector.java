@@ -1,4 +1,4 @@
-package home;
+package home.BaseDatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

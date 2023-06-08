@@ -1,26 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="961.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="961.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controller">
    <children>
+      <ScrollPane layoutX="247.0" layoutY="151.0" prefHeight="516.0" prefWidth="717.0">
+         <VBox fx:id="pnitems" spacing="20" style="-fx-padding: 20px;">
+            <!-- Ejemplo de una publicación -->
+            <VBox spacing="10" style="-fx-background-color: #F8F8F8; -fx-border-color: #E0E0E0; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-padding: 20px;">
+               <HBox spacing="10">
+                  <ImageView fitHeight="40" fitWidth="40">
+                     <image>
+                        <Image url="@../../Imagenes/descargar.png" />
+                     </image>
+                  </ImageView>
+                  <VBox spacing="5">
+                     <Text style="-fx-font-weight: bold;" text="Nombre de usuario: Christian Doe" />
+                     <Text style="-fx-font-size: 12px; -fx-fill: #888888;" text="Hace 2 horas" />
+                  </VBox>
+               </HBox>
+               <HBox spacing="10">
+                  <ImageView fitHeight="200.0" fitWidth="200.0">
+                     <image>
+                        <Image url="@../../Imagenes/71cISYzD5TL._AC_SX679_.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox spacing="5">
+                     <Text style="-fx-font-weight: bold;" text="Nombre del producto: Echo dot" />
+                     <Text style="-fx-font-weight: bold;" text="Nombre de la empresa: Coopel xoxo" />
+                     <Text text="Precio: $1,299.00" />
+                     <Text text="Descuento: -38 %" />
+                     <Text text="Teléfono del usuario: 123456789" />
+                     <Text text="Correo de la tienda: tienda@example.com" />
+                  </VBox>
+               </HBox>
+               <VBox spacing="5">
+                  <Text style="-fx-font-weight: bold;" text="Comentarios:" />
+                  <StackPane style="-fx-background-color: #F2F2F2; -fx-border-color: #E0E0E0; -fx-border-width: 1px; -fx-border-radius: 5px;">
+                     <TextArea prefHeight="50" promptText="Escribe un comentario..." style="-fx-padding: 5px;" />
+                  </StackPane>
+               </VBox>
+               <Button onAction="#BotonComentario" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Publicar comentario" />
+               <Button onAction="#BotonCompartir" style="-fx-background-color: #3b5998; -fx-text-fill: white;" text="Compartir" />
+            </VBox>
+            <VBox spacing="20" style="-fx-padding: 20px;">
+               <children>
+                  <HBox alignment="TOP_RIGHT">
+                     <padding>
+                        <Insets right="10" top="10" />
+                     </padding>
+                  </HBox>
+                  <!-- Ejemplo de otra publicación -->
+                  <VBox spacing="10" style="-fx-background-color: #F8F8F8; -fx-border-color: #E0E0E0; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-padding: 20px;">
+                     <HBox spacing="10">
+                        <ImageView fitHeight="40" fitWidth="40">
+                           <image>
+                              <Image url="@../../Imagenes/descargar.png" />
+                           </image>
+                        </ImageView>
+                        <VBox spacing="5">
+                           <Text style="-fx-font-weight: bold;" text="Nombre de usuario: John Doe" />
+                           <Text style="-fx-font-size: 12px; -fx-fill: #888888;" text="Hace 3 horas" />
+                        </VBox>
+                     </HBox>
+                     <HBox spacing="10">
+                        <ImageView fitHeight="200.0" fitWidth="200.0">
+                           <image>
+                              <Image url="@../../Imagenes/Picsart_23-05-15_19-07-11-472.png-removebg-preview-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <VBox spacing="5">
+                           <Text style="-fx-font-weight: bold;" text="Nombre del producto: Producto XYZ" />
+                           <Text style="-fx-font-weight: bold;" text="Nombre de la empresa: NombreEmpresa" />
+                           <Text text="Precio: $200" />
+                           <Text text="Descuento: 20%" />
+                           <Text text="Teléfono del usuario: 987654321" />
+                           <Text text="Correo de la tienda: tienda2@example.com" />
+                        </VBox>
+                     </HBox>
+                     <VBox spacing="5">
+                        <Text style="-fx-font-weight: bold;" text="Comentarios:" />
+                        <StackPane style="-fx-background-color: #F2F2F2; -fx-border-color: #E0E0E0; -fx-border-width: 1px; -fx-border-radius: 5px;">
+                           <TextArea prefHeight="50" promptText="Escribe un comentario..." style="-fx-padding: 5px;" />
+                        </StackPane>
+                     </VBox>
+                     <Button style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Publicar comentario" />
+                     <Button style="-fx-background-color: #3b5998; -fx-text-fill: white;" text="Compartir" />
+                  </VBox>
+               </children>
+            </VBox>
+         </VBox>
+      </ScrollPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebe8f9" height="152.0" layoutX="243.0" layoutY="-1.0" stroke="#ececec" strokeType="INSIDE" width="718.0" />
+      <Text layoutX="250.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SHOP SOCIAL" textAlignment="CENTER" wrappingWidth="710.9999999999999">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Text>
       <VBox layoutX="-4.0" layoutY="-1.0" prefHeight="667.0" prefWidth="250.0" style="-fx-background-color: #EBE8F9;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="198.0" prefWidth="268.0">
                <children>
                   <ImageView cache="true" fitHeight="146.0" fitWidth="231.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes/Picsart_23-05-15_19-07-11-472.png-removebg-preview-removebg-preview.png" />
+                        <Image url="@../../Imagenes/Picsart_23-05-15_19-07-11-472.png-removebg-preview-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brayan">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="John Doe">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
@@ -30,42 +129,85 @@
                   </Text>
                </children>
             </VBox>
-            <VBox alignment="BASELINE_LEFT" prefHeight="469.0" prefWidth="250.0">
+            <VBox alignment="BASELINE_LEFT" prefHeight="470.0" prefWidth="262.0">
                <children>
-                  <Button graphicTextGap="22.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="251.0" style="-fx-background-color: #EBE8F9;" text="Inicio">
+                  <Button graphicTextGap="22.0" mnemonicParsing="false" onAction="#BotonInicio" prefHeight="70.0" prefWidth="251.0" style="-fx-background-color: #EBE8F9;" text="Inicio">
                      <graphic>
                         <ImageView fitHeight="36.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Imagenes/hogar.png" />
+                              <Image url="@../../Imagenes/hogar.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
                   </Button>
-                  <Button graphicTextGap="22.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="259.0" style="-fx-background-color: #EBE8F9;" text="Mapa">
+                  <Button graphicTextGap="22.0" mnemonicParsing="false" onAction="#BotonMapa" prefHeight="70.0" prefWidth="259.0" style="-fx-background-color: #EBE8F9;" text="Mapa">
                      <graphic>
-                        <ImageView fx:id="button" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Imagenes/marcador.png" />
+                              <Image url="@../../Imagenes/marcador.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
                   </Button>
-                  <Button graphicTextGap="22.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #EBE8F9;" text="Perfil">
+                  <Button graphicTextGap="22.0" mnemonicParsing="false" onAction="#BotonAgregarUbicacion" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #EBE8F9;" text="Agregar Ubicación">
                      <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Imagenes/usuario.png" />
+                              <Image url="@../../Imagenes/marcador-de-mapa.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+                  
+                  <Button graphicTextGap="22.0" mnemonicParsing="false" onAction="#BotonPerfil" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #EBE8F9;" text="Perfil">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Imagenes/usuario.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+                  <Button graphicTextGap="22.0" mnemonicParsing="false" onAction="#BotonAgregar" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #EBE8F9;" text="Agregar producto">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Imagenes/mas.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </Button>
+                  <Button graphicTextGap="22.0" mnemonicParsing="false" onAction="#BotonQuitar" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #EBE8F9;" text="Quitar producto">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Imagenes/menos.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
                   </Button>
                </children>
             </VBox>
          </children>
-
-
       </VBox>
-      <VBox fx:id="pnitems" layoutX="247.0" layoutY="151.0" prefHeight="516.0" prefWidth="717.0" />
-
+      <StackPane fx:id="mapContainer" layoutX="247.0" layoutY="151.0" prefHeight="516.0" prefWidth="717.0" />
    </children>
 </AnchorPane>

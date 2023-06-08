@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Principal extends JFrame implements ActionListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
@@ -51,38 +53,37 @@ public class Principal extends JFrame implements ActionListener, MouseListener, 
         add(mapViewer);
 
         // Obtener las coordenadas desde la base de datos
-        GeoPosition position = obtenerCoordenadasDesdeBaseDeDatos();
-
-        // Crear un Waypoint con la GeoPosition
-        Waypoint waypoint = new DefaultWaypoint(position);
+        Set<Waypoint> waypoints = obtenerCoordenadasDesdeBaseDeDatos();
 
         // Crear un WaypointPainter
         WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<>();
-        waypointPainter.setWaypoints(Collections.singleton(waypoint));
+        waypointPainter.setWaypoints(waypoints);
 
         // Agregar el WaypointPainter al JXMapViewer
         mapViewer.setOverlayPainter(waypointPainter);
     }
 
-    private GeoPosition obtenerCoordenadasDesdeBaseDeDatos() {
+    private Set<Waypoint> obtenerCoordenadasDesdeBaseDeDatos() {
         // Realizar la conexión a la base de datos y obtener las coordenadas
 
         String url = "jdbc:mysql://localhost:3306/mydb";
         String user = "root";
         String password = "DJE20ben";
 
+        Set<Waypoint> waypoints = new HashSet<>();
+
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             // Realizar la consulta para obtener las coordenadas desde la base de datos
-            String query = "SELECT latitude, longitude FROM `ubicación` WHERE idUbicación = ?";
-            int id = 1; // ID del registro deseado
+            String query = "SELECT latitude, longitude FROM `ubicación`";
 
-            try (PreparedStatement statement = conn.prepareStatement(query)) {
-                statement.setInt(1, id);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
+            try (Statement statement = conn.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery(query)) {
+                    while (resultSet.next()) {
                         double latitude = resultSet.getDouble("latitude");
                         double longitude = resultSet.getDouble("longitude");
-                        return new GeoPosition(latitude, longitude);
+                        GeoPosition position = new GeoPosition(latitude, longitude);
+                        Waypoint waypoint = new DefaultWaypoint(position);
+                        waypoints.add(waypoint);
                     }
                 }
             }
@@ -90,8 +91,7 @@ public class Principal extends JFrame implements ActionListener, MouseListener, 
             e.printStackTrace();
         }
 
-        // En caso de error o si no se encuentra el registro en la base de datos, regresar una posición predeterminada
-        return new GeoPosition(0, 0);
+        return waypoints;
     }
 
     public void actionPerformed(ActionEvent e) {

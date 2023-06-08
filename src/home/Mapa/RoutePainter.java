@@ -1,4 +1,4 @@
-package home;
+package home.Mapa;
 
 
 import java.awt.BasicStroke;
