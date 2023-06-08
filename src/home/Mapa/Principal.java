@@ -1,16 +1,12 @@
-package home;
-
+package home.Mapa;
 import org.jxmapviewer.*;
-import org.jxmapviewer.painter.*;
 import org.jxmapviewer.viewer.*;
 
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
-
-import java.util.List;
-import java.util.ArrayList;
+import java.sql.*;
+import java.util.Collections;
 
 public class Principal extends JFrame implements ActionListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
@@ -53,6 +49,49 @@ public class Principal extends JFrame implements ActionListener, MouseListener, 
         mapViewer.addMouseMotionListener(this);
         mapViewer.addMouseWheelListener(this);
         add(mapViewer);
+
+        // Obtener las coordenadas desde la base de datos
+        GeoPosition position = obtenerCoordenadasDesdeBaseDeDatos();
+
+        // Crear un Waypoint con la GeoPosition
+        Waypoint waypoint = new DefaultWaypoint(position);
+
+        // Crear un WaypointPainter
+        WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<>();
+        waypointPainter.setWaypoints(Collections.singleton(waypoint));
+
+        // Agregar el WaypointPainter al JXMapViewer
+        mapViewer.setOverlayPainter(waypointPainter);
+    }
+
+    private GeoPosition obtenerCoordenadasDesdeBaseDeDatos() {
+        // Realizar la conexión a la base de datos y obtener las coordenadas
+
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String user = "root";
+        String password = "DJE20ben";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            // Realizar la consulta para obtener las coordenadas desde la base de datos
+            String query = "SELECT latitude, longitude FROM `ubicación` WHERE idUbicación = ?";
+            int id = 1; // ID del registro deseado
+
+            try (PreparedStatement statement = conn.prepareStatement(query)) {
+                statement.setInt(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        double latitude = resultSet.getDouble("latitude");
+                        double longitude = resultSet.getDouble("longitude");
+                        return new GeoPosition(latitude, longitude);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // En caso de error o si no se encuentra el registro en la base de datos, regresar una posición predeterminada
+        return new GeoPosition(0, 0);
     }
 
     public void actionPerformed(ActionEvent e) {

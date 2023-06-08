@@ -43,7 +43,7 @@
                   </Button>
                   <Button graphicTextGap="22.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="259.0" style="-fx-background-color: #EBE8F9;" text="Mapa">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="button" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Imagenes/marcador.png" />
                            </image>
@@ -61,7 +61,11 @@
                   </Button>
                </children>
             </VBox>
-         </children></VBox>
+         </children>
+
+
+      </VBox>
       <VBox fx:id="pnitems" layoutX="247.0" layoutY="151.0" prefHeight="516.0" prefWidth="717.0" />
+
    </children>
 </AnchorPane>
